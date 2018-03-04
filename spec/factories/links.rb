@@ -1,6 +1,28 @@
 require 'cgi'
 
 ##
+# Creates a fake URL for testing purposes
+#
+def build_url
+
+    # Get fake data
+    protocol = ['http', 'https'].sample
+    domain = Faker::HarryPotter.house
+    tld = ['.com', '.net', '.io', '.org', '.edu'].sample
+    path_dir = CGI.escape(Faker::DragonBall.character)
+    path_file = CGI.escape(Faker::GameOfThrones.house)
+
+    # Build the URL itself
+    "#{protocol}://#{domain}#{tld}/#{path_dir}/#{path_file}"
+end
+
+##
+# Creates a random short link
+def random_short_link
+    CGI.escape(Faker::Zelda.character)[0..6]
+end
+
+##
 # Defines a set of faked link data to populate the DB, in order
 # to better test the controller behaviour
 #
@@ -14,23 +36,4 @@ FactoryBot.define do
         shortened { random_short_link }
     end
 
-    ##
-    # Creates a fake URL for testing purposes
-    #
-    def build_url do
-
-        # Get fake data
-        protocol = ['http', 'https'].sample
-        domain = Faker::HarryPotter.house
-        tld = ['.com', '.net', '.io', '.org', '.edu'].sample
-        path_dir = CGI.escape(Faker::DragonBall.character)
-        path_file = CGI.escape(Faker::GameOfThrones.house)
-
-        # Build the URL itself
-        "#{protocol}://#{domain}#{tld}/#{path_dir}/#{path_file}"
-    end
-
-    def random_short_link do
-        CGI.escape(Faker::Zelda.character)[0..6]
-    end
 end

@@ -3,8 +3,8 @@ require 'rails_helper'
 ##
 # Spec for the links API
 #
-RSpec.describe 'Links API', type :request do
-
+RSpec.describe 'Links API', type: :request do
+    
     # Create fake data
     let!(:link) { create_list(:link, 10) }
 
