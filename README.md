@@ -38,12 +38,11 @@ added by default.
 
 ### Hosts file
 
-Because we use multi-tenancy with the apartment gem, you will want to add the following
-to your `/etc/hosts` file:
+Because we use multi-tenancy with the apartment gem, you will want to add them to your 
+`/etc/hosts` file:
 
-```
-127.0.0.1	t1.shortener.test
-127.0.0.1	t2.shortener.test
+```bash
+    sudo -- sh -c -e "echo '127.0.0.1  t1.shortener.test t2.shortener.test' >> /etc/hosts"
 ```
 
 ### Test
