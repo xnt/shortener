@@ -11,6 +11,7 @@ FactoryBot.define do
     #
     factory :link do
         original { build_url }
+        shortened { random_short_link }
     end
 
     ##
@@ -29,5 +30,7 @@ FactoryBot.define do
         "#{protocol}://#{domain}#{tld}/#{path_dir}/#{path_file}"
     end
 
-    def random
+    def random_short_link do
+        CGI.escape(Faker::Zelda.character)[0..6]
+    end
 end
