@@ -1,3 +1,5 @@
+require 'cgi'
+
 ##
 # Defines a set of faked link data to populate the DB, in order
 # to better test the controller behaviour
@@ -20,11 +22,12 @@ FactoryBot.define do
         protocol = ['http', 'https'].sample
         domain = Faker::HarryPotter.house
         tld = ['.com', '.net', '.io', '.org', '.edu'].sample
-        path_dir = Faker::DragonBall.character.gsub(' ', '%20')
-        path_file = Faker::GameOfThrones.house.gsub(' ', '%20')
+        path_dir = CGI.escape(Faker::DragonBall.character)
+        path_file = CGI.escape(Faker::GameOfThrones.house)
 
         # Build the URL itself
         "#{protocol}://#{domain}#{tld}/#{path_dir}/#{path_file}"
     end
 
+    def random
 end
