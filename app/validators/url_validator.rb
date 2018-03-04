@@ -34,7 +34,6 @@ class UrlValidator < ActiveModel::EachValidator
     # +value+ The value that's being passed to that attribute
     #
     def validate_each(record, attribute, value)
-        puts "howdy #{value}"
         is_valid = begin
             scheme = @@parser.parse(value).scheme
             scheme =~ /^https?$/
