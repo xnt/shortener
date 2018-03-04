@@ -1,4 +1,10 @@
 language: ruby
+
+addons:
+  hosts:
+    - t1.shortener.test
+    - t2.shortener.test
+
 rvm:
   - 2.3.1
 
