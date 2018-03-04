@@ -103,3 +103,14 @@ assuming that the value is `ab6ywhd0`:
 ```bash
     $ curl http://t1.shortener.test:3000/ab6ywhd0
 ```
+
+Which results in:
+
+```bash
+<html><body>You are being <a href="http://vplata.com">redirected</a>.</body></html>
+```
+
+You can see the actual server response by, for example, using Postman's Interceptor. As expected,
+it's an `HTTP 302` with the appropriate `Location` response header.
+
+Yay!
