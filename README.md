@@ -87,7 +87,7 @@ You should get something like this:
     }
 ```
 
-Check the *shortened* value. That'll be your short URL. You can append it to the domain.
+Check the **shortened** value. That'll be your short URL. You can append it to the domain.
 
 ### Resolving a shortened URL
 
