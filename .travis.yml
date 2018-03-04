@@ -1,0 +1,8 @@
+language: ruby
+rvm:
+  - 2.3.1
+
+script:
+  - bin/rake db:migrate
+  - bin/rake db:seed
+  - bin/rake
