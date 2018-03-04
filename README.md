@@ -1,4 +1,4 @@
-# Shortener
+# Shortener [![Build Status](https://travis-ci.org/xnt/shortener.svg?branch=master) ](https://travis-ci.org/xnt/shortener)
 
 A very simple URL shortener API. 
 

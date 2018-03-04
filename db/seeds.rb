@@ -6,5 +6,5 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-default_tenants = ["t1", "t2"]
+default_tenants = ["t1", "t2", "www"]
 default_tenants.each { |t| Apartment::Tenant.create(t) rescue Apartment::TenantExists }
