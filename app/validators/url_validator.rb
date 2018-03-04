@@ -32,7 +32,7 @@ class UrlValidator < ActiveModel::EachValidator
         is_valid = url_valid?(value)
 
         unless is_valid
-            record.errors[attribute] << (options[:message] || "is not a valid URL")
+            record.errors[attribute] << (options[:message] || "is not a valid URL (#{value})")
         end
     end
 
@@ -42,7 +42,7 @@ class UrlValidator < ActiveModel::EachValidator
         # Internal method that performs the proper validation
         #
         def url_valid?(url)
-            url = URI.parse(url) rescue false
-            url.kind_of?(URI::HTTP) || url.kind_of?(URI::HTTPS)
+            uri = URI.parse(url) rescue false
+            uri.kind_of?(URI::HTTP) || uri.kind_of?(URI::HTTPS)
         end
 end

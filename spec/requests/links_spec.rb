@@ -4,15 +4,15 @@ require 'rails_helper'
 # Spec for the links API
 #
 RSpec.describe 'Links API', type: :request do
-    
+
     # Create fake data
-    let!(:link) { create_list(:link, 10) }
+    let!(:links) { create_list(:link, 10) }
 
     # Get the first fake item and use it to test
     let(:sample_link) { links.first }
 
     # Get the first fake shortened term
-    let(:samle_shortened) { links.first.shorted }
+    let(:sample_shortened) { links.first.shortened }
 
     ##
     # Spec for the POST endpoint
@@ -23,7 +23,7 @@ RSpec.describe 'Links API', type: :request do
         let(:invalid_url) { { original: "huehuehue" } }
         
         context 'when the request is valid' do
-            before { post '/links', params: valid_attriubtes }
+            before { post '/links', params: valid_attributes }
             
             it 'creates a shortened link entry' do
                 expect(json['original']).to eq('http://facebook.com')

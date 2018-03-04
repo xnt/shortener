@@ -6,7 +6,7 @@ require 'cgi'
 def build_url
     # Get fake data
     protocol = ['http', 'https'].sample
-    domain = Faker::HarryPotter.house
+    domain = CGI.escape(Faker::HarryPotter.house)
     tld = ['.com', '.net', '.io', '.org', '.edu'].sample
     path_dir = CGI.escape(Faker::DragonBall.character)
     path_file = CGI.escape(Faker::GameOfThrones.house)
