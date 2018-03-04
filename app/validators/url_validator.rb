@@ -11,11 +11,6 @@ require 'uri'
 class UrlValidator < ActiveModel::EachValidator
 
     ##
-    # Reusable URI parser among different instances
-    #
-    @@parser = URI::Parser.new
-
-    ##
     # Validates that the attribute is being assigned a valid URL
     #
     # As it is now, the method tries to use +URI::Parser.parse+ . If
@@ -34,15 +29,20 @@ class UrlValidator < ActiveModel::EachValidator
     # +value+ The value that's being passed to that attribute
     #
     def validate_each(record, attribute, value)
-        is_valid = begin
-            scheme = @@parser.parse(value).scheme
-            scheme =~ /^https?$/
-        rescue 
-            false
-        end
+        is_valid = url_valid?(value)
 
         unless is_valid
             record.errors[attribute] << (options[:message] || "is not a valid URL")
         end
     end
+
+    private
+
+        ##
+        # Internal method that performs the proper validation
+        #
+        def url_valid?(url)
+            url = URI.parse(url) rescue false
+            url.kind_of?(URI::HTTP) || url.kind_of?(URI::HTTPS)
+        end
 end
