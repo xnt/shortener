@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180303234744) do
+ActiveRecord::Schema.define(version: 20180304195339) do
 
   create_table "links", force: :cascade do |t|
     t.string "original"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20180303234744) do
     t.string "subdomain"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["shortened"], name: "index_links_on_shortened"
   end
 
 end
