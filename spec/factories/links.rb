@@ -4,7 +4,6 @@ require 'cgi'
 # Creates a fake URL for testing purposes
 #
 def build_url
-
     # Get fake data
     protocol = ['http', 'https'].sample
     domain = Faker::HarryPotter.house
@@ -23,8 +22,8 @@ def random_short_link
 end
 
 ##
-# Defines a set of faked link data to populate the DB, in order
-# to better test the controller behaviour
+# Defines a set of faked link data, in order to better test the
+# controller/API behaviour
 #
 FactoryBot.define do
 
