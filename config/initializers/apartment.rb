@@ -60,6 +60,7 @@ Apartment.configure do |config|
   # The default behaviour is true.
   #
   config.use_schemas = true
+  config.default_tenant = 't1'
 
   #
   # ==> PostgreSQL only options

@@ -42,7 +42,7 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  #config.use_transactional_fixtures = true
 
   # Include happy helper
   config.include RequestSpecHelper, type: :request
@@ -70,15 +70,20 @@ RSpec.configure do |config|
   # add `FactoryBot` methods
   config.include FactoryBot::Syntax::Methods
 
-  # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
-    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.strategy = :truncation
   end
 
-  # Set the host for multi-tenancy
-  config.before(:all, type: :request) do
-    host! 't1.shortener.test'
+  # Set the default tenant for multi-tenancy
+  config.before(:each) do
+    Apartment::Tenant.switch! 't1'
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+    Apartment::Tenant.reset
   end
 
   # start the transaction strategy as examples are run

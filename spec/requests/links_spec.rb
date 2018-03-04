@@ -4,6 +4,10 @@ require 'rails_helper'
 # Spec for the links API
 #
 RSpec.describe 'Links API', type: :request do
+    
+    before do
+        Apartment::Tenant.switch! 't1'
+    end
 
     # Create fake data
     let!(:links) { create_list(:link, 10) }
@@ -60,7 +64,12 @@ RSpec.describe 'Links API', type: :request do
     # Spec for the GET endpoint
     #
     describe '/GET links' do
-        before { get "/#{sample_shortened}" }
+        before { 
+            # This gem is a torture
+            Apartment::Tenant.switch! 't1'
+            host! 't1.shortener.test' 
+            get "/#{sample_shortened}" 
+        }
 
         context 'when the shortened param is valid' do
             it 'redirects to the url' do

@@ -10,7 +10,6 @@ def build_url
     tld = ['.com', '.net', '.io', '.org', '.edu'].sample
     path_dir = CGI.escape(Faker::DragonBall.character)
     path_file = CGI.escape(Faker::GameOfThrones.house)
-
     # Build the URL itself
     "#{protocol}://#{domain}#{tld}/#{path_dir}/#{path_file}"
 end

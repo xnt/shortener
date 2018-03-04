@@ -4,12 +4,10 @@ class LinksController < ApplicationController
     # +GET+
     #
     def show
-
         path = request.env['PATH_INFO']
         # Remove slash
         path = path[1..-1]
         link = Link.find_by(shortened: path)
-
         # Not found
         unless link
             render status: 404
@@ -24,15 +22,10 @@ class LinksController < ApplicationController
     # +POST+
     #
     def create
-
         status = 200
 
         # Create
-        link = Link.new
-        link.original = links_params[:original]
-        link.shortened = Link::create_shortened
-        link.subdomain = request.subdomain
-        link.save
+        link = do_create
 
         # Invalid creation
         unless link.valid? 
@@ -46,6 +39,15 @@ class LinksController < ApplicationController
 
     def links_params
         params.permit(:original, :shortened)
+    end
+
+    def do_create
+        link = Link.new
+        link.original = links_params[:original]
+        link.shortened = Link::create_shortened
+        link.subdomain = request.subdomain
+        link.save
+        link
     end
 
 end
