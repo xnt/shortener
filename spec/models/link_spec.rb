@@ -17,6 +17,7 @@ RSpec.describe Link, type: :model do
       allow_value("http://Pukwudgie.io/Nail/Roote+of+Lord+Harroway%27s+Town")\
       .for(:original) }
 
+    it { is_expected.not_to allow_value("").for(:original) }
     it { is_expected.not_to allow_value("x").for(:original) }
     it { is_expected.not_to allow_value("<!-- dkajsflkas -->").for(:original) }
     it { is_expected.not_to allow_value("john@doe.net").for(:original) }
