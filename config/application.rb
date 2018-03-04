@@ -9,6 +9,7 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "action_view/railtie"
 require "action_cable/engine"
+require "apartment/elevators/subdomain"
 # require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
@@ -29,5 +30,7 @@ module Shortener
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    config.middleware.use Apartment::Elevators::Subdomain
   end
 end
