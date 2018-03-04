@@ -41,8 +41,8 @@ RSpec.describe 'Links API', type: :request do
         context 'when the request is missing the url param' do
             before { post '/links' }
 
-            it 'returns HTTP 400' do
-                expect(response).to have_http_status(400)
+            it 'returns HTTP 415' do
+                expect(response).to have_http_status(415)
             end
         end
 

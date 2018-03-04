@@ -4,16 +4,41 @@ class LinksController < ApplicationController
     # +GET+
     #
     def show
-        ActionController::redirect_to @link.original
+
+        path = request.env['PATH_INFO']
+        # Remove slash
+        path = path[1..-1]
+        link = Link.find_by(shortened: path)
+
+        # Not found
+        unless link
+            render status: 404
+            return
+        end
+
+        # Redirect
+        redirect_to link.original
     end
 
     ##
     # +POST+
     #
     def create
-        #links_params.shortened = Link::create_shortened
-        @link = Link.create(links_params)
-        json_response(@link)
+
+        status = 200
+
+        # Create
+        link = Link.new
+        link.original = links_params[:original]
+        link.shortened = Link::create_shortened
+        link.save
+
+        # Invalid creation
+        unless link.valid? 
+            status = 415
+        end
+
+        json_response(link, status)
     end
 
     private
@@ -22,7 +47,4 @@ class LinksController < ApplicationController
         params.permit(:original, :shortened)
     end
 
-    def set_link
-        @link = Link.find(params[:shortened])
-    end
 end
