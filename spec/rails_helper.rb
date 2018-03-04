@@ -76,6 +76,11 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :transaction
   end
 
+  # Set the host for multi-tenancy
+  config.before(:all, type: :request) do
+    host! 't1.shortener.test'
+  end
+
   # start the transaction strategy as examples are run
   config.around(:each) do |example|
     DatabaseCleaner.cleaning do

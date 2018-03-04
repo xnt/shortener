@@ -33,6 +33,7 @@ FactoryBot.define do
     factory :link do
         original { build_url }
         shortened { random_short_link }
+        subdomain { 't1' }
     end
 
 end

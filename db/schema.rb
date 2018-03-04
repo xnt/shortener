@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20180303234744) do
   create_table "links", force: :cascade do |t|
     t.string "original"
     t.string "shortened"
+    t.string "subdomain"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

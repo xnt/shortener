@@ -32,8 +32,5 @@ module Shortener
     config.api_only = true
 
     config.middleware.use Apartment::Elevators::Subdomain
-
-    # Use a static list of tenant names for migrate
-    config.tenant_names = ['tenant1', 'tenant2']
   end
 end

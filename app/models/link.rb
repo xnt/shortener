@@ -4,7 +4,6 @@
 class Link < ApplicationRecord
     validates :shortened, presence: true
     validates :original, presence: true, url: true
-
     ##
     # Creates a short, pseudo-unique string
     #

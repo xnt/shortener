@@ -31,6 +31,7 @@ class LinksController < ApplicationController
         link = Link.new
         link.original = links_params[:original]
         link.shortened = Link::create_shortened
+        link.subdomain = request.subdomain
         link.save
 
         # Invalid creation
