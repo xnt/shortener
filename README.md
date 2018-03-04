@@ -33,7 +33,7 @@ Create, migrate and seed the DB. Seeding it is important to ensure that tenants 
 added by default.
 
 ```bash
-    $ rails db:create; rails db:migrate; rails db:seed
+    $ rake db:migrate; rake db:seed
 ```
 
 ### Hosts file
@@ -48,7 +48,13 @@ to your `/etc/hosts` file:
 
 ### Test
 
-Run the test suite using RSpec:
+Run the test suite using rake, which should hit rspec:
+
+```bash
+    $ rake
+```
+
+Alternatively:
 
 ```bash
     $ bundle exec rspec
